@@ -1,0 +1,20 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: efs-sc-test
+  annotations:
+    meta.helm.sh/release-name: aws-efs-csi-driver-1
+    meta.helm.sh/release-namespace: storage-class
+provisioner: efs.csi.aws.com
+parameters:
+  basePath: /dynamic_provisioning
+  directoryPerms: '700'
+  fileSystemId: fs-059c46cd74b5a5b2e
+  uid: '1000'
+  gid: '1000'
+  provisioningMode: efs-ap
+reclaimPolicy: Delete
+mountOptions:
+  - tls
+volumeBindingMode: Immediate
+
